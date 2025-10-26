@@ -27,6 +27,12 @@
     footer{text-align:center;padding:12px;font-size:13px;color:#94a3b8}
     .tiktok-btn{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:#111827;cursor:pointer;margin-top:10px}
     .tiktok-btn.disabled{opacity:0.4;cursor:not-allowed}
+
+    /* Images censurées/publiques */
+    .img-ios-censuree,.img-ios-publique{width:100%;border-radius:10px;transition:opacity .5s ease;}
+    .img-ios-publique{position:absolute;top:0;left:0;opacity:0;}
+    body.vpn-on .img-ios-censuree{opacity:0;}
+    body.vpn-on .img-ios-publique{opacity:1;position:relative;}
   </style>
 </head>
 <body>
@@ -48,9 +54,8 @@
     <div id="tab1" class="tab-content active">
       <h2>I — Délégation de la censure aux GAFAM</h2>
       <div class="censored">
-        <div class="text">
-          <p><strong>Contenu censuré :</strong> Publication supprimée pour infraction à la loi SREN. Message jugé incitatif par algorithme.</p>
-        </div>
+        <img src="images/img-ios-censuree.jpg" alt="Image censurée" class="img-ios-censuree">
+        <img src="images/img-ios-publique.jpg" alt="Image publique" class="img-ios-publique">
         <div class="overlay"><strong>Contenu retiré</strong><br><small>Supprimé automatiquement par la plateforme.</small></div>
       </div>
       <div>
