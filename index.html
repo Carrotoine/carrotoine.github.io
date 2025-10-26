@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Erreur 451 — Prototype à onglets</title>
+  <style>
+    body{font-family:Inter,system-ui,Helvetica,Arial;margin:0;background:#071126;color:#e6eef8}
+    header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#0b1220}
+    h1{margin:0;font-size:20px}
+    .vpn-toggle{display:flex;align-items:center;gap:8px}
+    .switch{position:relative;width:52px;height:28px;background:#0c1626;border-radius:999px;padding:4px;cursor:pointer}
+    .knob{position:absolute;top:4px;left:4px;width:20px;height:20px;background:white;border-radius:50%;transition:all .2s}
+    .switch.on{background:#10b981}.switch.on .knob{left:28px}
+    #status{background:#1f2937;padding:6px 10px;border-radius:999px;font-size:13px}
+    main{padding:24px}
+    .tabs{display:flex;gap:8px;margin-bottom:12px}
+    .tab{padding:8px 14px;border-radius:8px;cursor:pointer;background:#0b1220;color:#94a3b8}
+    .tab.active{background:#10b981;color:white}
+    .tab-content{display:none;background:#0b1220;border-radius:12px;padding:20px}
+    .tab-content.active{display:block}
+    .censored{position:relative;margin-bottom:14px;padding:14px;border-radius:8px;background:rgba(255,255,255,0.03)}
+    .censored .overlay{position:absolute;inset:0;background:rgba(2,6,23,0.6);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#94a3b8}
+    .censored .text{filter:blur(6px);user-select:none}
+    body.vpn-on .censored .overlay{display:none}
+    body.vpn-on .censored .text{filter:none}
+    footer{text-align:center;padding:12px;font-size:13px;color:#94a3b8}
+    .tiktok-btn{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:#111827;cursor:pointer;margin-top:10px}
+    .tiktok-btn.disabled{opacity:0.4;cursor:not-allowed}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Erreur 451 — Prototype interactif</h1>
+    <div class="vpn-toggle">
+      <label style="font-size:13px;color:#94a3b8">Simuler VPN</label>
+      <div id="switch" class="switch"><div class="knob"></div></div>
+      <div id="status">Pays : <strong id="country">France 🇫🇷</strong></div>
+    </div>
+  </header>
+  <main>
+    <div class="tabs">
+      <div class="tab active" data-tab="1">I — GAFAM</div>
+      <div class="tab" data-tab="2">II — Médias</div>
+      <div class="tab" data-tab="3">III — Crise</div>
+      <div class="tab" data-tab="4">Bibliographie</div>
+    </div>
+    <div id="tab1" class="tab-content active">
+      <h2>I — Délégation de la censure aux GAFAM</h2>
+      <div class="censored">
+        <div class="text">
+          <p><strong>Contenu censuré :</strong> Publication supprimée pour infraction à la loi SREN. Message jugé incitatif par algorithme.</p>
+        </div>
+        <div class="overlay"><strong>Contenu retiré</strong><br><small>Supprimé automatiquement par la plateforme.</small></div>
+      </div>
+      <div>
+        <p><strong>Contenu non censuré :</strong> Explication pédagogique du rôle des GAFAM et des lois (Avia, SREN, etc.).</p>
+      </div>
+    </div>
+    <div id="tab2" class="tab-content">
+      <h2>II — Censure implicite dans les médias</h2>
+      <div class="censored">
+        <div class="text">
+          <p>Titre original : « Répression et manifestations : bilan humain »</p>
+        </div>
+        <div class="overlay"><strong>Modifié</strong><br><small>Devenu : « Tensions locales – situation sous contrôle »</small></div>
+      </div>
+      <div>
+        <p><strong>Contenu non censuré :</strong> Analyse sur l’euphémisation médiatique et les pressions économiques.</p>
+      </div>
+    </div>
+    <div id="tab3" class="tab-content">
+      <h2>III — En temps de crise</h2>
+      <div class="censored">
+        <div class="text">
+          <p>Décision du CE limitant la diffusion d’images en Nouvelle-Calédonie.</p>
+        </div>
+        <div class="overlay"><strong>Accès restreint</strong><br><small>Ordonnance exceptionnelle.</small></div>
+      </div>
+      <div>
+        <p><strong>Contenu non censuré :</strong> Contexte des mesures et enjeux démocratiques.</p>
+        <div id="tiktok" class="tiktok-btn disabled">TikTok — contenu bloqué</div>
+      </div>
+    </div>
+    <div id="tab4" class="tab-content">
+      <h2>Bibliographie</h2>
+      <ul>
+        <li>Lois Avia, SREN, directives européennes</li>
+        <li>Rapports du Conseil d’État</li>
+        <li>Articles sur la censure en ligne</li>
+      </ul>
+    </div>
+  </main>
+  <footer>Prototype éducatif — le VPN est simulé (aucune redirection réelle).</footer>
+  <script>
+    const switchEl=document.getElementById('switch');
+    const country=document.getElementById('country');
+    const tiktok=document.getElementById('tiktok');
+    const tabs=document.querySelectorAll('.tab');
+    const contents=document.querySelectorAll('.tab-content');
+
+    function setVPN(on){
+      document.body.classList.toggle('vpn-on',on);
+      switchEl.classList.toggle('on',on);
+      country.textContent=on? 'Islande 🇮🇸' : 'France 🇫🇷';
+      if(on){tiktok.classList.remove('disabled');tiktok.textContent='TikTok — contenu accessible';}
+      else{tiktok.classList.add('disabled');tiktok.textContent='TikTok — contenu bloqué';}
+      localStorage.setItem('vpn',on?'1':'0');
+    }
+    switchEl.onclick=()=>setVPN(!document.body.classList.contains('vpn-on'));
+    if(localStorage.getItem('vpn')==='1')setVPN(true);
+
+    tabs.forEach(tab=>{
+      tab.onclick=()=>{
+        tabs.forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        contents.forEach(c=>c.classList.remove('active'));
+        document.getElementById('tab'+tab.dataset.tab).classList.add('active');
+      };
+    });
+  </script>
+</body>
+</html>
