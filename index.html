@@ -8,7 +8,7 @@
     body{font-family:Inter,system-ui,Helvetica,Arial;margin:0;background:#071126;color:#e6eef8}
     header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#0b1220}
     h1{margin:0;font-size:20px}
-    .vpn-toggle{display:flex;align-items:center;gap:8px}
+    .vpn-toggle{display:flex;align-items:center;gap:8px;position:relative}
     .switch{position:relative;width:52px;height:28px;background:#0c1626;border-radius:999px;padding:4px;cursor:pointer}
     .knob{position:absolute;top:4px;left:4px;width:20px;height:20px;background:white;border-radius:50%;transition:all .2s}
     .switch.on{background:#10b981}.switch.on .knob{left:28px}
@@ -33,15 +33,38 @@
     .img-ios-publique{position:absolute;top:0;left:0;opacity:0;}
     body.vpn-on .img-ios-censuree{opacity:0;}
     body.vpn-on .img-ios-publique{opacity:1;position:relative;}
+
+    /* Info icon */
+    .info-icon{cursor:pointer;font-size:18px;color:#94a3b8;background:#1f2937;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s;}
+    .info-icon:hover{background:#10b981;color:white;}
+    .info-box{display:none;position:absolute;top:36px;right:0;background:#0b1220;padding:12px;border-radius:8px;width:220px;font-size:13px;color:#e6eef8;box-shadow:0 0 10px rgba(0,0,0,0.4);z-index:10;}
+
+    /* Popup intro */
+    .popup{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;z-index:100;}
+    .popup-content{background:#0b1220;padding:24px;border-radius:12px;max-width:400px;text-align:center;box-shadow:0 0 15px rgba(0,0,0,0.5);}
+    .popup-content h2{margin-top:0;color:#10b981;}
+    .popup-content button{margin-top:16px;padding:8px 14px;background:#10b981;border:none;border-radius:8px;cursor:pointer;color:white;font-weight:bold;}
+    .popup-content button:hover{background:#0ea36e;}
   </style>
 </head>
 <body>
+  <div id="introPopup" class="popup">
+    <div class="popup-content">
+      <h2>Projet erreur 451 — Censure dans les démocraties</h2>
+      <p>L'erreur 451 est le nom de l'erreur qui s'affiche lorsqu'un contenu est inaccessible pour des raisons légales. Sur ce site nous nous intéresserons aux différentes formes de censure dans les démocraties. Premièrment une censure directe via des mécanismes légaux nombreux. Deuxièmement une censure plus implicite notamment par l'influence de milliardaires sur le contenu des réseaux sociaux mais aussi des médias. Enfin nous verrons qu'en temps de crise cette censure devient totalement débridé et n'a rien à envier aux pays les plus autoritaires.</p>
+     <p style = font-size: 13 px><strong>Participants :</strong> Afi ginette AHADO - Antoine BELLANGER - CLÉMENT - Marianne BEUCHER - Lola BOUHALI - Roxane MANACH - Pierre MARCHAL-BESSAT  </p>
+      <button id="closePopup">Fermer</button>
+    </div>
+  </div>
+
   <header>
     <h1>Erreur 451 — Prototype interactif</h1>
     <div class="vpn-toggle">
       <label style="font-size:13px;color:#94a3b8">Simuler VPN</label>
       <div id="switch" class="switch"><div class="knob"></div></div>
       <div id="status">Pays : <strong id="country">France 🇫🇷</strong></div>
+      <div class="info-icon" id="infoBtn">i</div>
+      <div class="info-box" id="infoBox">Un VPN (Virtual Private Network) est l'un des moyens les plus efficaces de continue la censure. Il prmet de chiffrer la connexion et de simuler la connexion depuis un autre pays.</div>
     </div>
   </header>
   <main>
@@ -103,6 +126,10 @@
     const tiktok=document.getElementById('tiktok');
     const tabs=document.querySelectorAll('.tab');
     const contents=document.querySelectorAll('.tab-content');
+    const infoBtn=document.getElementById('infoBtn');
+    const infoBox=document.getElementById('infoBox');
+    const introPopup=document.getElementById('introPopup');
+    const closePopup=document.getElementById('closePopup');
 
     function setVPN(on){
       document.body.classList.toggle('vpn-on',on);
@@ -123,6 +150,14 @@
         document.getElementById('tab'+tab.dataset.tab).classList.add('active');
       };
     });
+
+    infoBtn.onclick=()=>{
+      infoBox.style.display=infoBox.style.display==='block'?'none':'block';
+    };
+
+    closePopup.onclick=()=>{
+      introPopup.style.display='none';
+    };
   </script>
 </body>
 </html>
