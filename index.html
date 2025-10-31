@@ -3,8 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Erreur 451 — Prototype à onglets</title>
+  <title>Erreur 451</title>
+
   <style>
+    /* Ajout pour un défilement fluide */
+    html {
+      scroll-behavior: smooth;
+    }
+  
     body{font-family:Inter,system-ui,Helvetica,Arial;margin:0;background:#071126;color:#e6eef8}
     header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#0b1220}
     h1{margin:0;font-size:20px}
@@ -45,119 +51,423 @@
     .popup-content h2{margin-top:0;color:#10b981;}
     .popup-content button{margin-top:16px;padding:8px 14px;background:#10b981;border:none;border-radius:8px;cursor:pointer;color:white;font-weight:bold;}
     .popup-content button:hover{background:#0ea36e;}
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+    
+    /* --- Styles pour les sous-menus --- */
+    .tab {
+      position: relative; /* Nécessaire pour positionner le sous-menu */
+    }
+    
+    .submenu {
+      display: none; /* Caché par défaut */
+      position: absolute;
+      top: 100%; /* Apparaît juste en dessous de l'onglet */
+      left: 0;
+      background-color: #0b1220;
+      border: 1px solid #1f2937;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      min-width: 200px; /* Largeur minimale du sous-menu */
+      z-index: 10;
+      padding: 8px;
+    }
+
+    .submenu a {
+      display: block;
+      color: #e6eef8;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    
+    .submenu a:hover {
+      background-color: #1f2937;
+    }
+
+    /* Affichage au survol de l'onglet parent */
+    .tab:hover .submenu {
+      display: block;
+    }
+    /* Style images + légendes*/
+    figure {
+      margin: 16px auto; 
+      padding: 0;
+      max-width: 1000px; 
+    }
+
+    figure img {
+      width: 150%;        
+      height: auto;       
+      display: block;    
+      border-radius: 8px; 
+    }
+
+    figcaption {
+      font-style: italic;  
+      font-size: 14px;
+      text-align: center;
+      color: #94a3b8;     
+      margin-top: 8px;    
+    }
+
   </style>
+
 </head>
 <body>
   <div id="introPopup" class="popup">
     <div class="popup-content">
-      <h2>Projet erreur 451 — Censure dans les démocraties</h2>
-      <p>L'erreur 451 est le nom de l'erreur qui s'affiche lorsqu'un contenu est inaccessible pour des raisons légales. Sur ce site nous nous intéresserons aux différentes formes de censure dans les démocraties. Premièrment une censure directe via des mécanismes légaux nombreux. Deuxièmement une censure plus implicite notamment par l'influence de milliardaires sur le contenu des réseaux sociaux mais aussi des médias. Enfin nous verrons qu'en temps de crise cette censure devient totalement débridé et n'a rien à envier aux pays les plus autoritaires.</p>
-     <p style = font-size: 13 px><strong>Participants :</strong> Afi ginette AHADO - Antoine BELLANGER - CLÉMENT - Marianne BEUCHER - Lola BOUHALI - Roxane MANACH - Pierre MARCHAL-BESSAT  </p>
+      <h2>Erreur 451 - Projet de culture du numérique</h2>
+      <p> L'erreur 451 est l'erreur qui s'affiche lorsqu'une page web est innaccessible pour des raisons légales. Sur ce site internet nous nous intéresserons, au travers de nombreux exemples à comment les pays dit démocratiques, et en particulier la France, parviennent à mettre en place des mécanismes de censure digne des prires régimes autoritaires.</p>
+      <p><strong>Participants :</strong> AHADO Ginette | BELLANGER-CLEMENT Antoine | BEUCHER Marianne | BOUHALI Lola | MANACH Roxane | MARCHAL-BESSAT Pierre</p>
       <button id="closePopup">Fermer</button>
     </div>
   </div>
 
   <header>
-    <h1>Erreur 451 — Prototype interactif</h1>
+    <h1>Erreur 451 - Culture du numérique </h1>
     <div class="vpn-toggle">
-      <label style="font-size:13px;color:#94a3b8">Simuler VPN</label>
+      <label style="font-size:13px;color:#94a3b8">Activer le VPN</label>
       <div id="switch" class="switch"><div class="knob"></div></div>
       <div id="status">Pays : <strong id="country">France 🇫🇷</strong></div>
       <div class="info-icon" id="infoBtn">i</div>
-      <div class="info-box" id="infoBox">Un VPN (Virtual Private Network) est l'un des moyens les plus efficaces de continue la censure. Il prmet de chiffrer la connexion et de simuler la connexion depuis un autre pays.</div>
+      <div class="info-box" id="infoBox">Un VPN (Virtual Private Network) est l'outil le plus efficace pour contourner la censure. Il permet de simuler la connexion dans un autre pays et de chiffrer cette connexion afin de contourner les blocages et la surveillance.</div>
     </div>
   </header>
   <main>
-    <div class="tabs">
-      <div class="tab active" data-tab="1">I — GAFAM</div>
-      <div class="tab" data-tab="2">II — Médias</div>
-      <div class="tab" data-tab="3">III — Crise</div>
-      <div class="tab" data-tab="4">Bibliographie</div>
+
+<div class="tabs">
+      <div class="tab active" data-tab="1">
+        Notre méthode
+        <div class="submenu">
+          <a href="#methode-intro" data-tab="1">Introduction</a>
+          <a href="#methode-outils" data-tab="1">Nos outils</a>
+        </div>
+      </div>
+
+      <div class="tab" data-tab="2">
+        I
+        <div class="submenu">
+          <a href="#gafam-role" data-tab="2">Rôle des GAFAM</a>
+          <a href="#gafam-lois" data-tab="2">Lois (Avia, SREN)</a>
+        </div>
+      </div>
+
+      <div class="tab" data-tab="3">
+        II
+        <div class="submenu">
+          <a href="#media-analyse" data-tab="3">Analyse médiatique</a>
+          <a href="#media-pressions" data-tab="3">Pressions économiques</a>
+        </div>
+      </div>
+      
+      <div class="tab" data-tab="4">
+        III
+        <div class="submenu">
+          <a href="#kanaky-contexte" data-tab="4">Le blocage de TikTOk en Kanaky</a>
+          <a href="#futur">A l'avenir, une censure décomplexée</a>
+        </div>
+  
+      </div>
+      <div class="tab" data-tab="5">
+        Bibliographie
+        <div class="submenu" onclick="event.stopPropagation()">
+          <a href="#biblio-lois">Lois</a>
+          <a href="#biblio-articles">Articles</a>
+        </div>
+      </div>
     </div>
-    <div id="tab1" class="tab-content active">
-      <h2>I — Délégation de la censure aux GAFAM</h2>
+  
+<div id="tab1" class="tab-content active">
+      <h2 id="methode-intro">Notre methode</h2>
+        <p>Notre enquête s'appuie sur ... (Cliquez sur le lien "Nos outils" ci-dessus pour défiler)</p>
+        <div style="height: 300px;"></div> <h3 id="methode-outils">Nos outils</h3>
+        <p>Texte sur vos outils...</p>
+    </div>
+
+    <div id="tab2" class="tab-content">
+      <h2>I — La délégation de la censure aux GAFAM par l'Etat</h2>
       <div class="censored">
         <img src="images/img-ios-censuree.jpg" alt="Image censurée" class="img-ios-censuree">
         <img src="images/img-ios-publique.jpg" alt="Image publique" class="img-ios-publique">
         <div class="overlay"><strong>Contenu retiré</strong><br><small>Supprimé automatiquement par la plateforme.</small></div>
       </div>
-      <div>
-        <p><strong>Contenu non censuré :</strong> Explication pédagogique du rôle des GAFAM et des lois (Avia, SREN, etc.).</p>
-      </div>
+      
+      <h3 id="gafam-role" style="margin-top: 20px;">Le Rôle des GAFAM</h3>
+      <p>
+        <strong>Contenu non censuré :</strong> Explication pédagogique du rôle des GAFAM...
+      </p>
+      <div style="height: 300px;"></div> <h3 id="gafam-lois" style="margin-top: 20px;">Lois (Avia, SREN, etc.)</h3>
+      <p>
+        Texte sur les lois Avia, SREN, etc.
+      </p>
     </div>
-    <div id="tab2" class="tab-content">
+
+
+    <div id="tab3" class="tab-content">
       <h2>II — Censure implicite dans les médias</h2>
       <div class="censored">
-        <div class="text">
-          <p>Titre original : « Répression et manifestations : bilan humain »</p>
+        <div class="image">
+          <img src="images/img-ios-censuree.jpg" alt="Image censurée" class="img-ios-censuree">
         </div>
         <div class="overlay"><strong>Modifié</strong><br><small>Devenu : « Tensions locales – situation sous contrôle »</small></div>
       </div>
-      <div>
-        <p><strong>Contenu non censuré :</strong> Analyse sur l’euphémisation médiatique et les pressions économiques.</p>
-      </div>
+      
+      <h3 id="media-analyse" style="margin-top: 20px;">Analyse médiatique</h3>
+      <p><strong>Contenu non censuré :</strong> Analyse sur l’euphémisation médiatique...</p>
+      <div style="height: 300px;"></div> <h3 id="media-pressions" style="margin-top: 20px;">Pressions économiques</h3>
+      <p>Texte sur les pressions économiques...</p>
     </div>
-    <div id="tab3" class="tab-content">
-      <h2>III — En temps de crise</h2>
-      <div class="censored">
-        <div class="text">
-          <p>Décision du CE limitant la diffusion d’images en Nouvelle-Calédonie.</p>
-        </div>
-        <div class="overlay"><strong>Accès restreint</strong><br><small>Ordonnance exceptionnelle.</small></div>
-      </div>
-      <div>
-        <p><strong>Contenu non censuré :</strong> Contexte des mesures et enjeux démocratiques.</p>
-        <div id="tiktok" class="tiktok-btn disabled">TikTok — contenu bloqué</div>
-      </div>
-    </div>
+
+
     <div id="tab4" class="tab-content">
-      <h2>Bibliographie</h2>
+      <h2>III — En temps de crise une censure débridée</h2>
+           <div class="censored">
+              <figure>
+                <img src="images/tiktok.jpg" class = "center">
+                <figcaption>Quelques appels à la révolte (capture d'écran TikTok)</figcaption>
+              </figure>
+            <div class="overlay"><strong>Accès Bloqué</strong><br><small>Le contenu que vous recherchez est bloqué à la demande des autorités de votre pays</small></div>
+            </div>
+
+            <div id="tiktok">
+              <h3 id="kanaky-contexte">Le blocage de TikTok en Kanaky (15 au 29 mai 2024) <sup><a href="#source-1" id="ref-1-back" style="color: #67e8f9;">[1]</a></sup></h3>
+              <p>
+                Le 13 mai 2024 commence l’étude du projet de loi constitutionnelle sur le dégel du corps électoral des élections provinciales de Kanaky. Débutent alors des révoltes contre l'État “colonial”, demandant l’indépendance de l’île. Le 15 mai, les services de l’État demandent à l’opérateur téléphonique présent en Kanaky de bloquer les serveurs liés au nom de domaine de TikTok afin de bloquer le réseau social sur l’île. En clair, lorsqu'on essaie d’accéder à TikTok, le serveur DNS (Domain Name Service) du fournisseur d’accès internet (FAI) bloque l’accès. Seul un VPN (Virtual Private Network) permet de contourner le blocage.
+              </p>
+
+              <h3>Les fondements juridiques de la décision</h3>
+              <p>
+                Tous les experts s’accordent à dire que les fondements juridiques de la décision sont plutôt bancals. Le gouvernement s’appuie sur deux éléments : la théorie des <strong>circonstances exceptionnelles</strong>.<sup><a href="#source-2" id="ref-2-back" style="color: #67e8f9;">[2]</a></sup>
+                Il s’agit d’une jurisprudence datant de la Première Guerre mondiale qui permet à l'autorité administrative de prendre en urgence les mesures considérées indispensables en raison de circonstances graves, anormales et imprévisibles pour maintenir la continuité de l’État. Néanmoins, les experts critiquent la proportionnalité de la mesure.<sup><a href="#source-3" id="ref-3-back" style="color: #67e8f9;">[3]</a></sup>
+              </p>
+              <p>
+                Deuxièmement, l’<strong>état d’urgence</strong> (décrété le 15 mai sur l’île), avec l’article 11 de cette loi : « Le ministre de l'intérieur peut prendre toute mesure pour assurer l'interruption de tout service de communication au public en ligne provoquant à la commission d'actes de terrorisme ou en faisant l'apologie. »<sup><a href="#source-4" id="ref-4-back" style="color: #67e8f9;">[4]</a></sup>
+                Or ici, il est difficile de caractériser des actes de terrorisme, il s’agit uniquement de manifestations violentes. Qui plus est, cet amendement avait été adopté dans le but de lutter contre les sites de propagande islamiste, on est ici bien loin de cette réalité.
+              </p>
+
+              <h3>Une décision attaquée devant le Conseil d’État</h3>
+              <p>
+                Dès le 17 mai, cette décision est attaquée notamment par l’association <strong>La Quadrature du net</strong> qui dépose un <strong>référé liberté</strong> (procédure d’urgence permettant de garantir les libertés fondamentales) devant le Conseil d’État.<sup><a href="#source-5" id="ref-5-back" style="color: #67e8f9;">[5]</a></sup>
+                Dans un premier temps, le tribunal considère que l’urgence n’est pas caractérisée et décide de ne pas se prononcer sur la légalité de la décision du Premier Ministre. Le blocage du réseau social dure donc jusqu’à la fin de l'état d’urgence, soit le 29 mai.<sup><a href="#source-6" id="ref-6-back" style="color: #67e8f9;">[6]</a></sup>
+              </p>
+              <p>
+                Néanmoins, le 1er avril dernier, le Conseil d’État a examiné sur le fond le blocage de TikTok et a <strong>déclaré son illégalité</strong>. La victoire pour les associations de défense des droits de l’Homme est cependant en demi-teinte. La décision est jugée illégale non pas sur le fond mais sur la <strong>forme</strong> : le Premier Ministre aurait dû prévoir une date de fin au blocage. Le Conseil d’État juge qu’un blocage sans date de fin prévue dès le déclenchement de la mesure est une atteinte disproportionnée aux droits fondamentaux.<sup><a href="#source-7" id="ref-7-back" style="color: #67e8f9;">[7]</a></sup>
+              </p>
+              <p>
+                Le tribunal maintient que bloquer un réseau social peut être légal même si la loi ne le prévoit pas, si des circonstances exceptionnelles sont réunies (le Conseil d’État juge qu’elles l'étaient en Kanaky) et qu’il s’agit du seul moyen technique disponible pour faire cesser le trouble (ce qui était le cas). On peut penser qu’à l’avenir cette décision fera jurisprudence pour permettre d'autres blocages.
+              </p>
+
+              <h3>Un blocage prélude à d’autres restrictions des libertés ?</h3>
+              <p>
+                Plusieurs auteurs soulignent le caractère <strong>expérimental</strong> de la mesure. Pour eux, il s’agissait d’une sorte de test avant d’appliquer la mesure à une plus grande échelle. En particulier depuis les émeutes de 2023 suite à l’assassinat du jeune Nahel Merzouk à Nanterre, l’État cherche le moyen de neutraliser les réseaux sociaux, vus comme des vecteurs de révoltes et un moyen d’organisation des contestataires. Si l’État a pris cette décision en Kanaky c’est pour plusieurs raisons :
+                <ul>
+                  <li>La <strong>facilité technique</strong> : il n’existe qu’un seul opérateur sur l’île, ce qui a grandement facilité le blocage.</li>
+                  <li>Le <strong>désintérêt médiatique</strong> et plus globalement des Français hexagonaux pour la Kanaky, rendant cette mesure plus socialement acceptable.</li>
+                  <li>Les <strong>enjeux géopolitiques</strong> : la Chine cherche à avoir de l’influence sur la Kanaky pour récupérer le précieux lithium présent sur l’île et utiliserait TikTok à ces fins.</li>
+                  <li>Le <strong>régime juridique particulier</strong> de l’île, qui ne répond pas des engagements européens de la France, notamment concernant l’article 10 de la Convention de sauvegarde des droits de l’Homme (CSDH) qui rend quasi impossible le blocage généralisé de sites internet sur le continent.</li>
+                </ul>
+                <sup><a href="#source-8" id="ref-8-back" style="color: #67e8f9;">[8]</a></sup>
+              </p>
+              <p>
+                Plus largement, ce blocage s’inscrit dans la <strong>gestion coloniale</strong> de l’île, toujours considérée par l’ONU comme un territoire à décoloniser. Comme le rappelle le sociologue Mathieu Rigouste, les territoires d’Outre-Mer et les banlieues sont des « <strong>endo-colonies</strong> », des colonies de l’intérieur, dans lesquels les méthodes administratives et policières les plus brutales sont employées avant d’être appliquées à l’ensemble du territoire.<sup><a href="#source-9" id="ref-9-back" style="color: #67e8f9;">[9]</a></sup>
+              </p>
+
+              <h3>Des pratiques de contournement à diffuser</h3>
+             <figure>
+                <img src="images/stat_VPN.jpg" class = "center">
+                <figcaption>Statistiques fournies par ProtonVPN sur l'utilisation de leur service</figcaption>
+              </figure>
+              <p>
+                Néanmoins, des solutions existent pour se prémunir face à de telles mesures, comme l’usage d’un <strong>VPN</strong>. Une jeune de 14 ans explique ainsi à la Première comment elle et tous ses amis ont réussi à continuer à utiliser le réseau social.
+              </p>
+              <p>
+                En Kanaky, suite à l’interdiction de TikTok, l’usage de VPN a explosé. Proton VPN, tout comme NordVPN, aurait connu une hausse massive d'utilisateurs, avec une augmentation de <strong>2 500 %</strong> pour le premier par rapport à début mai, et <strong>500 %</strong> pour le second.<sup><a href="#source-10" id="ref-10-back" style="color: #67e8f9;">[10]</a></sup>
+              </p>
+              <p>
+                Par ailleurs, le blocage de TikTok n’a pas éteint la colère populaire. Les Kanaks ont continué à se retrouver et à protester, utilisant d’autres réseaux sociaux, notamment <strong>Facebook</strong> (deux fois plus populaire que TikTok), ou se rencontrant physiquement.<sup><a href="#source-11" id="ref-11-back" style="color: #67e8f9;">[11]</a></sup>
+              </p>
+              <figure>
+                <img src="images/tiktok_VPN.jpg" class = "center">
+                <figcaption>Des jeunes se vantent de l'utilisation de VPN (capture d'écran TikTok)</figcaption>
+              </figure>
+              <figure>
+                <img src="images/appel_kanaky.jpg" class = "center">
+                <figcaption>Malgré le blocage du réseau social de nombreux tiktok étaient toujours postés par la Kanaks (capture d'écran TikTok)</figcaption>
+              </figure>
+              
+              <hr style="margin-top: 30px; border-color: #1f2937;">
+  
+            <h3 id="futur">A l'avenir, une censure décomplexée</h3>
+              <h3>La décision du Conseil d’État comme concrétisation d’une tendance politique croissante</h3>
+              <p>Jusqu’à cette jurisprudence, aucun acte de droit, aucune décision juridique, ne venait appuyer la légalité d’une décision de bloquer les réseaux sociaux, d’où la controverse autour du cas de la Kanaky.</p>
+              <p>Elle vient donc confirmer une tendance prise depuis les émeutes de 2023, que nous allons à présent détailler.</p>
+              <p>Suite aux émeutes qui ont eu lieu du 28 juin au 5 juillet 2023, et ayant comme point de départ la mort de Nahel Merzouk, tué à bout portant lors d’un contrôle de police, le Sénat a publié un rapport, le 9 avril 2024, intitulé « Émeutes de juin 2023 : comprendre, évaluer, réagir ». <sup><a href="#source-12" id="ref-12-back" style="color: #67e8f9;">[12]</a></sup></h3> Dans celui-ci, le Sénat invite à « tirer les leçons » de ces évènements, afin d’apporter une réponse institutionnelle plus adaptée selon lui. C’est ainsi que, parmi les 25 propositions du rapport, il y a la possibilité de « contrôler les réseaux sociaux en cas d’émeutes ». Cela suit une déclaration du président de la République Emmanuel Macron <sup><a href="#source-13" id="ref-13-back" style="color: #67e8f9;">[13]</a></sup></h3>, dès le moment des faits, qui évoquait cette idée, tempérée assez rapidement par son porte parole Olivier Véran. Celui-ci a affirmé qu’il ne s’agissait pas de bloquer l’ensemble du réseau concerné (ce qui a pourtant été fait un an plus tard), mais plutôt certaines fonctionnalités, comme la géolocalisation par exemple. C’est cette idée qu’on retrouve dans le rapport, en plus de l’obligation que l’état d’urgence soit déclaré (là encore, on voit bien que ce principe ne fut pas respecté en Kanaky).</p>
+              <p>Même si ces dispositions n’ont pas été concrétisées par un texte de loi, leur apparition dans le débat parlementaire français marque ainsi une tendance prise, et confirmée par la décision du Conseil d’État du 1er avril dernier. De plus, l’usage concret du blocage de Tik Tok, malgré le fait que rien n’ait prévu législativement cette mesure, pose question quant aux prérogatives dont peut se munir le gouvernement, donnant l’impression que celui-ci peut utiliser les textes de loi comme cela l’arrange à certains moments, même sans validation formelle. Cela laisse penser que la décision du Conseil d’État pourrait mener à des abus de la part du pouvoir en place, notamment du fait de l’aspect assez vague qu’elle revêt. Par exemple, que signifie concrètement le terme « circonstances exceptionnelles » ? De même, les trois conditions à réunir peuvent très bien l’être de manière assez factice.</p>
+
+              <h3>Les textes de lois récents : une nouvelle marge de manœuvre pour le gouvernement ?</h3>
+              <p>Cette crainte est renforcée par le fait que, même si aucune loi n’autorise encore le blocage des réseaux sociaux en cas de crise, le sujet est néanmoins de plus en plus présent. Les risques de censure peuvent ainsi être décelés, même s’ils sont présents de manière plus insidieuse, dans un autre texte de loi, « visant à sécuriser et réguler l’espace numérique », la loi SREN <sup><a href="#source-14" id="ref-14-back" style="color: #67e8f9;">[14]</a></sup></h3> donc, promulguée le 21 mai 2024.</p>
+              <p>La Quadrature du Net alerte notamment sur deux dispositions de cette loi <sup><a href="#source-15" id="ref-15-back" style="color: #67e8f9;">[15]</a></sup></h3>, qui, du point de vue des libertés, pourraient s’avérer problématiques. La première est la censure obligatoire en 24h, suite à la demande des autorités, de contenu pédopornographique, sous peine de sanctions plus lourdes. Les auteurs soulignent que cela pourrait mener les plateformes, qui ne disposent pas toujours des moyens techniques pour s’assurer de l’illégalité du contenu, à « surcensurer » par précaution. Même si cela peut paraître minime comparé au risque de pédopornographie, la même critique avait été proférée à l’égard de la loi Avia en 2020, menant à son rejet par le Conseil Constitutionnel.<sup><a href="#source-16" id="ref-16-back" style="color: #67e8f9;">[16]</a></sup></h3></p>
+              <p>La deuxième réserve émise par l’association est l’apparition d’un contrôle administratif du contenu au niveau des navigateurs web. Cela signifie que la police, si elle repère un site de <strong>phishing</strong>, est en capacité d’imposer au navigateur web le retrait du contenu. Peu importe que la décision soit justifiée ou non, ce n’est pas dans le pouvoir du navigateur de s’y opposer, d’autant plus que la décision d’un juge intervient seulement <strong>a posteriori</strong> de la décision de censurer. On voit bien les risques que comprend cette disposition, et le chemin qu’elle ouvre vers une censure du contenu politique.</p>
+              <p>Par ailleurs cette loi, même si elle s’inspire des règlements DSA et DMA de l’Union européenne, n’en respecte pas les codes, comme s’en insurge Thierry Breton dans un courrier adressé à Catherine Colonna, alors ministre de l’Europe et des Affaires étrangères, le 14 août 2024. (à mieux expliquer ou juste enlever parce que c’est pas si important)</p>
+              <p>On remarque ainsi à travers cette loi, même si elle n’est pas directement liée au contrôle des réseaux sociaux dans les moments de crise, une orientation du gouvernement plutôt vers la restriction que vers l’éducation ou encore l’allocation de moyens plus importants à la justice pour sanctionner les abus réels des réseaux, ce que regrette notamment la <strong>Quadrature du net</strong>. De plus, le fait que des dispositions, qui avaient provoqué le rejet de la loi Avia quatre ans auparavant soit désormais acceptées, pose question quant à l’évolution des représentations politiques sur le sujet.</p>
+
+              <h3>De nouvelles orientations politiques de plus en plus dangereuses pour les libertés ?</h3>
+              <p>A ce titre, certaines prises de position de députés restent assez inquiétantes. En effet, on peut citer, toujours dans le cadre de la loi SREN, la proposition d’amendement du député <strong>Renaissance</strong> Paul Midy, entouré d’autres membres de la majorité. Cette proposition consistait à rendre obligatoire de donner son identité numérique lors de la création d’un compte sur un réseau social. Elle fut rejetée <sup><a href="#source-20" id="ref-20-back" style="color: #67e8f9;">[20]</a></sup></h3> lors de discussions hors séance, car cela aurait mis en danger le vote du texte, mais l’idée est tout de
+          même révélatrice de nouveaux risques pour l’anonymat en ligne.</p>
+              <p>Dans la même mouvance, le projet de règlement de l’union européenne « <strong>Chat control</strong> », également appelé « <strong>Child Sexual Abuse Regulation</strong> » (CSAR) interroge. Quoique l’intention paraisse louable, le but affiché étant effectivement de lutter contre la pédocriminalité, les dispositions prévues à cet effet sont particulièrement contestées. Le règlement prévoit de fait de forcer les plateformes à scanner les messages privés en amont de leur chiffrement, y compris pour des réseaux sociaux à haut chiffrement tels que <strong>Whatsapp</strong> ou <strong>Signal</strong>. Cela a même donné naissance à une campagne, intitulée « <strong>Stop Scanning Me</strong> » <sup><a href="#source-17" id="ref-17-back" style="color: #67e8f9;">[17]</a></sup></h3>car, comme le dénoncent de nombreuses organisations et citoyens, le risque est d’autoriser une surveillance de masse de la population, en prétendant la protéger.</p>
+              <p>En effet, le chiffrement est essentiel pour de nombreuses personnes, que ce soit pour se sentir plus en sécurité, ou bien pour la liberté de l’action militante, comme en témoignent de jeunes activistes sur le site de la campagne. Les spécialistes sont unanimes quant au danger pour le chiffrement dans son ensemble que cette nouvelle obligation représenterait, et donc, par conséquent, pour les libertés individuelles. De plus, cette proposition suppose que toutes les plateformes incluent un moyen de contrôler l’âge de l’internaute à leurs pratiques, ce qui, là encore, est impossible à ce jour sans constituer une atteinte à la « liberté d’expression, à l’indépendance et au droit à la vie privée »<sup><a href="#source-18" id="ref-18-back" style="color: #67e8f9;">[18]</a></sup></h3>, comme le fait remarquer la <strong>Quadrature du net</strong>. De fait, à la fois l’ONU et la Cour européenne des droits de l’Homme ont relevé qu’une violation du chiffrement constituerait un danger massif pour le droit à la vie privée.<sup><a href="#source-19" id="ref-19-back" style="color: #67e8f9;">[19]</a></sup></h3></p>
+              <p>Ainsi, présentée en 2022, cette loi devait être votée ce 14 octobre 2025 en Conseil de l’Union Européenne. Cependant, faute de majorité, le texte a été rejeté, et le vote devrait donc se tenir plus tard. Le parlement européen avait déjà adopté en 2023 une position contre ce dispositif, cependant l’expérience a montré que cette instance a moins de poids dans les négociations, et le rapporteur de la loi a laissé entendre qu’il pourrait assouplir sa position sur le chiffrement, ce qui là encore est assez inquiétant. De même, plusieurs pays se sont prononcés officiellement contre, mais sont apparemment soumis à de plus en plus de pression de la part notamment du département des affaires intérieures de la Commission européenne. C’est ainsi que, après avoir voté contre puis s’être abstenue, la France pourrait maintenant voter pour ce projet. Même s’il reste donc une certaine réticence face au vote d’une loi si contestée et dangereuse pour nos libertés individuelles, le débat est loin d’être clos et, au-delà de ça, c’est le projet même qui interroge.</p>
+
+              <h3>Un débat plus que jamais au goût du jour</h3>
+              <p>Tous ces éléments ne signifient pas qu’il ne faut rien réguler. Les tentatives de diminuer le cyberharcèlement ou encore la diffusion de contenu haineux ou à caractère pédopornographique sont tout à fait justifiées. Cependant, il faut s’interroger sur la limite entre une nécessaire protection de la population vis à vis des dangers des réseaux sociaux, et une censure plus ou moins masquée derrière ces nobles intentions.</p>
+              <p>Dès 2023, certains médias alertent sur le virage possiblement liberticide que prenait la France, invoquant l’engagement pris en 1966, lors de la signature du <strong>Pacte international relatif aux droits civils et politiques</strong> <sup><a href="#source-21" id="ref-21-back" style="color: #67e8f9;">[21]</a></sup></h3>, à n’exercer une restriction sur la liberté d’expression que dans un cadre fixé par la loi. La restriction doit donc être proportionnée, et nécessaire pour protéger l’« intérêt légitime », qui doit faire partie d’une liste précise édictée à l’article 9. Le blocage des réseaux en Kanaky est la preuve que, lorsque des considérations politiques sont en jeu, ces garde-fous contre l’usage de mesures abusives n’ont plus d’importance.</p>
+              <p>Nos observations visent ainsi à montrer que le risque encouru est que certaines considérations, juridiques et éthiques, ne soient plus prises en compte actuellement dans les réflexions sur les réseaux sociaux, le numérique, et ses risques. La crainte croissante des réseaux et la place de plus en plus importante qu’ils prennent dans la vie quotidienne semblent justifier des projets de plus en plus liberticides, qui alertent de nombreuses organisations sur les dérives possibles, y compris pour la censure du contenu politique.</p>
+              <p>Ainsi, si on reprend le cas du blocage des réseaux lors de situations exceptionnelles comme les émeutes, on remarque que les pays qui en font une application régulière sont des pays peu démocratiques comme le Burkina Faso, le Sri Lanka <sup><a href="#source-22" id="ref-22-back" style="color: #67e8f9;">[22]</a></sup></h3>, … De plus, ces mesures restent politiques dans le sens où elles contribuent à décrédibiliser les mouvements, en les rendant responsables des violences, sans questionner cependant la légitimité de leurs revendications. De même, certaines études ont prouvé que, loin de faire baisser la violence, la censure des réseaux pouvait mener à un pic de violence au contraire, ce qui irait donc à l’encontre des objectifs affichés par le gouvernement.</p>
+              <p>Ces différentes remarques nous font donc questionner la gestion démocratique des situations de crise et, plus généralement, des réseaux sociaux et leurs risques. La ligne entre mesure nécessaire à la sécurité et censure masquée est fine, et souvent l’une peut mener à l’autre sans que cela ne se remarque.</p>
+        
+        <hr style="margin-top: 30px; border-color: #1f2937;">
+        
+        <section id="footnotes">
+                <h2 style="font-size: 18px; margin-bottom: 10px;">Notes de bas de page</h2>
+                
+                <p id="source-1"><strong>[1]</strong> Dans un esprit décolonial nous utiliserons le terme Kanaky, terme utilisé par les Kanaks en opposition avec le terme Nouvelle-Calédonie, importé lors de la colonisation française. <a href="#ref-1-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-2"><strong>[2]</strong> Interdiction de TikTok en Nouvelle-Calédonie : une mesure basée sur un "fondement juridique flou" selon des experts | La Première. <a href="#ref-2-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-3"><strong>[3]</strong> Blocage de TikTok en Nouvelle-Calédonie : la décision du Conseil d'État | vie-publique.fr. <a href="#ref-3-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-4"><strong>[4]</strong> Décret n° 2024-436 du 15 mai 2024 portant application de la loi n° 55-385 du 3 avril 1955. <a href="#ref-4-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-5"><strong>[5]</strong> La Quadrature du Net attaque en justice le blocage de TikTok en Nouvelle-Calédonie | la quadrature du Net. <a href="#ref-5-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-6"><strong>[6]</strong> CE n° 494320/2024. <a href="#ref-6-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-7"><strong>[7]</strong> CE n° 494320/2025. <a href="#ref-7-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+
+                <p id="source-8"><strong>[8]</strong> <a href="https://www.laquadrature.net/wp-content/uploads/sites/8/2024/05/LQDN_RL_Blocage_TikTok_anon.pdf" target="_blank" style="color: #67e8f9;">https://www.laquadrature.net/wp-content/uploads/sites/8/2024/05/LQDN_RL_Blocage_TikTok_anon.pdf</a> (référé liberté déposé par la Quadrature du Net le 17/05/2024). <a href="#ref-8-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-9"><strong>[9]</strong> Rigouste, Mathieu. 2012. La Domination Policière. <a href="https://doi.org/10.3917/lafab.rigou.2012.01" target="_blank" style="color: #67e8f9;">https://doi.org/10.3917/lafab.rigou.2012.01</a>. <a href="#ref-9-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-10"><strong>[10]</strong> <a href="#" target="_blank" style="color: #67e8f9;">Aussitôt décrétée par l’Etat, l’interdiction de TikTok contournée en Nouvelle-Calédonie | La Première</a>. <a href="#ref-10-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-11"><strong>[11]</strong> <a href="#" target="_blank" style="color: #67e8f9;">Blocage de TikTok en Nouvelle-Calédonie : l'usage des VPN explose pour contourner l'interdiction | Cnet</a>. <a href="#ref-11-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-12"><strong>[12]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://www.senat.fr/rap/r23-521/r23-5218.html</a>. <a href="#ref-12-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-13"><strong>[13]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://www.ouest-france.fr/faits-divers/emeutes-urbaines/couper-les-reseaux-sociaux-en-cas-demeutes-comment-le-gouvernement-compte-t-il-sy-prendre-f8f6d2a6-1b31-11ee-8c1d-2fa30ad00bee</a>. <a href="#ref-13-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-14"><strong>[14]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://www.legifrance.gouv.fr/dossierlegislatif/JORFDOLE000047533100/ </a>. <a href="#ref-14-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-15"><strong>[15]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://www.laquadrature.net/2023/09/12/projet-de-loi-sren-le-gouvernement-sourd-a-la-realite-dinternet/</a>. <a href="#ref-15-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-16"><strong>[16]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://www.conseil-constitutionnel.fr/decision/2020/2020801DC.htm </a>. <a href="#ref-16-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-17"><strong>[17]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://stopscanningme.eu/fr/ </a>. <a href="#ref-17-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-18"><strong>[18]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://www.laquadrature.net/2025/10/03/chat-control-on-fait-le-point/ </a>. <a href="#ref-18-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-19"><strong>[19]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://www.radiofrance.fr/franceinfo/podcasts/aujourd-hui-c-est-demain/whatsapp-messenger-la-cour-europeenne-des-droits-de-l-homme-s-oppose-a-l-obligation-de-fournir-les-cles-pour-dechiffrer-les-messages-2812729 </a>. <a href="#ref-19-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-20"><strong>[20]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://basta.media/Chat-Control-reglement-europeen-attaque-confidentialite-communications-Whatsapp-Signal </a>. <a href="#ref-20-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-21"><strong>[21]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://www.ohchr.org/fr/instruments-mechanisms/instruments/international-covenant-civil-and-political-rights  </a>. <a href="#ref-21-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                <p id="source-22"><strong>[22]</strong> <a href="#" target="_blank" style="color: #67e8f9;">https://theconversation.com/en-france-ou-ailleurs-couper-lacces-aux-reseaux-sociaux-pour-couper-court-aux-emeutes-209583 </a>. <a href="#ref-22-back" title="Retour au texte" style="color: #67e8f9;">↑</a></p>
+                </p>
+
+        </section>
+        
+        </div> <div id="tab5" class="tab-content">
+      <h2 id="biblio-lois">Bibliographie</h2>
       <ul>
         <li>Lois Avia, SREN, directives européennes</li>
-        <li>Rapports du Conseil d’État</li>
+        <li id="biblio-articles">Rapports du Conseil d’État</li>
         <li>Articles sur la censure en ligne</li>
       </ul>
     </div>
   </main>
-  <footer>Prototype éducatif — le VPN est simulé (aucune redirection réelle).</footer>
+
+
+  <footer>Proejet erreur 451 par :AHADO Ginette | BELLANGER-CLEMENT Antoine | BEUCHER Marianne | BOUHALI Lola | MANACH Roxane | MARCHAL-BESSAT Pierre </footer>
+  
   <script>
     const switchEl=document.getElementById('switch');
     const country=document.getElementById('country');
-    const tiktok=document.getElementById('tiktok');
+    // const tiktok=document.getElementById('tiktok'); <-- CORRECTION : Ligne supprimée
     const tabs=document.querySelectorAll('.tab');
     const contents=document.querySelectorAll('.tab-content');
     const infoBtn=document.getElementById('infoBtn');
     const infoBox=document.getElementById('infoBox');
     const introPopup=document.getElementById('introPopup');
     const closePopup=document.getElementById('closePopup');
+    const submenuLinks = document.querySelectorAll('.submenu a');
 
+    // --- VPN ---
     function setVPN(on){
       document.body.classList.toggle('vpn-on',on);
       switchEl.classList.toggle('on',on);
       country.textContent=on? 'Islande 🇮🇸' : 'France 🇫🇷';
-      if(on){tiktok.classList.remove('disabled');tiktok.textContent='TikTok — contenu accessible';}
-      else{tiktok.classList.add('disabled');tiktok.textContent='TikTok — contenu bloqué';}
+      
+      // --- CORRECTION : Les lignes ci-dessous ont été supprimées ---
+      // if(on){tiktok.classList.remove('disabled');tiktok.textContent='TikTok — contenu accessible';}
+      // else{tiktok.classList.add('disabled');tiktok.textContent='TikTok — contenu bloqué';}
+      // --- Fin de la correction ---
+
       localStorage.setItem('vpn',on?'1':'0');
     }
     switchEl.onclick=()=>setVPN(!document.body.classList.contains('vpn-on'));
     if(localStorage.getItem('vpn')==='1')setVPN(true);
 
-    tabs.forEach(tab=>{
-      tab.onclick=()=>{
-        tabs.forEach(t=>t.classList.remove('active'));
-        tab.classList.add('active');
-        contents.forEach(c=>c.classList.remove('active'));
-        document.getElementById('tab'+tab.dataset.tab).classList.add('active');
-      };
-    });
-
+    // --- Pop-up ---
     infoBtn.onclick=()=>{
       infoBox.style.display=infoBox.style.display==='block'?'none':'block';
     };
-
     closePopup.onclick=()=>{
       introPopup.style.display='none';
     };
+
+    // --- Logique des onglets ---
+
+    /**
+     * Fonction centralisée pour activer un onglet et son contenu
+     * @param {string} tabId - Le numéro de l'onglet (ex: "1", "2", ...)
+     */
+    function activateTab(tabId) {
+        // Désactive tous les onglets et contenus
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        // Active l'onglet principal correspondant
+        const tabToActivate = document.querySelector(`.tab[data-tab="${tabId}"]`);
+        if (tabToActivate) {
+            tabToActivate.classList.add('active');
+        }
+
+        // Active le panneau de contenu correspondant
+        const contentToActivate = document.getElementById('tab' + tabId);
+        if (contentToActivate) {
+            contentToActivate.classList.add('active');
+        }
+    }
+
+    // 1. Gérer les clics sur les onglets principaux
+    tabs.forEach(tab => {
+      tab.onclick = () => {
+        activateTab(tab.dataset.tab);
+      };
+    });
+
+    // 2. Gérer les clics sur les liens des sous-menus
+    submenuLinks.forEach(link => {
+      link.onclick = (e) => {
+        // Empêche le navigateur de sauter à l'ancre immédiatement
+        e.preventDefault(); 
+        
+        const tabId = link.dataset.tab;
+        const anchorId = link.getAttribute('href'); // ex: "#gafam-role"
+
+        // 1. Activer le bon onglet
+        activateTab(tabId);
+        
+        // 2. Défiler vers l'ancre
+        const anchorElement = document.querySelector(anchorId);
+        if (anchorElement) {
+          // Utilise scrollIntoView pour un défilement propre
+          anchorElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' // Aligne le haut de l'élément en haut de la vue
+          });
+        }
+      };
+    });
+
   </script>
 </body>
 </html>
